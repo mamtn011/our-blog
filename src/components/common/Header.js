@@ -24,11 +24,11 @@ const Header = () => {
     { path: "/contact", label: "Contact" },
   ];
   return (
-    <header className="bg-black text-white fixed top-0 left-0 right-0">
+    <header className="bg-black text-white fixed top-0 left-0 right-0 shadow-2xl shadow-slate-800">
       <nav className="p-4 max-w-7xl mx-auto flex justify-between items-center">
         {/* logo  */}
         <Link href="/" className="text-xl font-bold text-white">
-          My<span className="text-orange-500">Blog</span>
+          Our<span className="text-orange-500">Blog</span>
         </Link>
         {/* nav items for lg device */}
         <ul className="md:flex gap-12 text-lg hidden">
@@ -72,7 +72,7 @@ const Header = () => {
       </nav>
       {/* nav items for mobile device */}
       <ul
-        className={`md:hidden gap-12 text-lg block space-y-2 p-4 mt-14 bg-white ${
+        className={`md:hidden gap-12 text-lg block space-y-2 p-4 mt-14 bg-white h-lvh ${
           isMenuOpen
             ? "fixed top-0 left-0 w-full transition-all ease-out duration-150"
             : "hidden"

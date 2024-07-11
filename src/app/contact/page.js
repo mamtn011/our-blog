@@ -1,9 +1,8 @@
-import React from "react";
-
+import Banner from "@/components/shared/Banner";
 const ContactPage = () => {
   return (
     <div>
-      <h1>Contact</h1>
+      <Banner pageName="Contact" />
     </div>
   );
 };

@@ -1,9 +1,9 @@
-import React from "react";
+import Banner from "@/components/shared/Banner";
 
 const BlogPage = () => {
   return (
     <div>
-      <h1>Blogs</h1>
+      <Banner pageName="Blog" />
     </div>
   );
 };
