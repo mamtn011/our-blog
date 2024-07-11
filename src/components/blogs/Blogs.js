@@ -2,31 +2,45 @@
 import { useState } from "react";
 import BlogCards from "./BlogCards";
 import Pagination from "./Pagination";
-import { filterBlog } from "@/utils/blog";
+import { filterBlogByCategory, filterBlogByPageSize } from "@/utils/blog";
+import Category from "./Category";
 
 const Blogs = ({ blogs }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [category, setCategory] = useState(null);
-  const pageSize = 12;
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const pageSize = 9;
 
+  // handle page and category change
   const handlePageChange = (pageNum) => {
     setCurrentPage(pageNum);
   };
   const handleCategoryChange = (categoryName) => {
-    setCategory(categoryName);
+    setSelectedCategory(categoryName);
     setCurrentPage(1);
   };
-  const filteredBlogs = filterBlog(blogs, currentPage, pageSize, category);
+  // filter blogs by category and page size
+  const filteredBlogsByCategory = filterBlogByCategory(blogs, selectedCategory);
+  const filteredBlogsByPageSize = filterBlogByPageSize(
+    filteredBlogsByCategory,
+    currentPage,
+    pageSize
+  );
+
+  // JSX
   return (
     <div>
-      {filteredBlogs && (
+      {filteredBlogsByPageSize.length > 0 && (
         <>
-          <div>Page category</div>
-
-          <BlogCards blogs={filteredBlogs} />
+          <Category
+            onSelectCategory={handleCategoryChange}
+            selectedCategory={selectedCategory}
+          />
+          <div>
+            <BlogCards blogs={filteredBlogsByPageSize} />
+          </div>
           <Pagination
             onPageChange={handlePageChange}
-            totalBlogs={blogs.length}
+            totalBlogs={filteredBlogsByCategory.length}
             pageSize={pageSize}
             currentPage={currentPage}
           />

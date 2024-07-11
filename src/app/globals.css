@@ -26,6 +26,6 @@ body {
   }
   button[disabled] {
     color: rgb(176, 170, 170);
-    border: 1px solid gray;
+    border: none;
   }
 }
