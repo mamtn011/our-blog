@@ -1,3 +1,10 @@
 .active {
   @apply text-orange-500;
 }
+
+.pagination li {
+  @apply my-2 hover:text-orange-500;
+}
+.pagination li button {
+  @apply inline-block px-4 py-2 border border-orange-500;
+}

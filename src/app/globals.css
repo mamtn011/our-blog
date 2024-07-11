@@ -24,4 +24,8 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  button[disabled] {
+    color: rgb(176, 170, 170);
+    border: 1px solid gray;
+  }
 }

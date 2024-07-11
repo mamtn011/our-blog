@@ -1,10 +1,12 @@
 "use client";
 import { useState } from "react";
 import BlogCards from "./BlogCards";
+import Pagination from "./Pagination";
+import { filterBlog } from "@/utils/blog";
 
 const Blogs = ({ blogs }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [category, setCategory] = useState("all");
+  const [category, setCategory] = useState(null);
   const pageSize = 12;
 
   const handlePageChange = (pageNum) => {
@@ -12,14 +14,24 @@ const Blogs = ({ blogs }) => {
   };
   const handleCategoryChange = (categoryName) => {
     setCategory(categoryName);
+    setCurrentPage(1);
   };
-
+  const filteredBlogs = filterBlog(blogs, currentPage, pageSize, category);
   return (
     <div>
-      <div>Page category</div>
-      {blogs && <BlogCards blogs={blogs} />}
+      {filteredBlogs && (
+        <>
+          <div>Page category</div>
 
-      <div>pagination</div>
+          <BlogCards blogs={filteredBlogs} />
+          <Pagination
+            onPageChange={handlePageChange}
+            totalBlogs={blogs.length}
+            pageSize={pageSize}
+            currentPage={currentPage}
+          />
+        </>
+      )}
     </div>
   );
 };

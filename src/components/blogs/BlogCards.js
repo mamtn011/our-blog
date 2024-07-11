@@ -3,10 +3,9 @@ import Link from "next/link";
 import { FaCalendarCheck, FaUserTie } from "react-icons/fa6";
 
 const BlogCards = ({ blogs }) => {
-  let filteredBlogs = blogs;
   return (
     <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 px-4">
-      {filteredBlogs.map((blog) => {
+      {blogs.map((blog) => {
         return (
           <Link
             href={{
