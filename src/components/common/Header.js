@@ -1,25 +1,17 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import SocialLinks from "../shared/SocialLinks";
+import { FaBars, FaXmark } from "react-icons/fa6";
 
-// react icon
-import {
-  FaBars,
-  FaXmark,
-  FaSquareFacebook,
-  FaSquareDribbble,
-  FaSquareXTwitter,
-  FaSquareGithub,
-} from "react-icons/fa6";
-
+// JSX
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const pathname = usePathname();
   const navItems = [
     { path: "/", label: "Home" },
-    { path: "/about", label: "About" },
     { path: "/blogs", label: "Blog" },
     { path: "/contact", label: "Contact" },
   ];
@@ -43,20 +35,9 @@ const Header = () => {
             </li>
           ))}
         </ul>
-        {/* menu icons */}
-        <div className="text-white lg:flex gap-4 items-center hidden">
-          <Link href="/" className="hover:text-orange-500">
-            <FaSquareFacebook />
-          </Link>
-          <Link href="/" className="hover:text-orange-500">
-            <FaSquareDribbble />
-          </Link>
-          <Link href="/" className="hover:text-orange-500">
-            <FaSquareXTwitter />
-          </Link>
-          <Link href="/" className="hover:text-orange-500">
-            <FaSquareGithub />
-          </Link>
+        {/* menu social icons */}
+        <div className="text-white text-xl sm:hidden lg:flex gap-4 items-center">
+          <SocialLinks />
         </div>
 
         {/* mobile menu btn - display on mobile screen */}

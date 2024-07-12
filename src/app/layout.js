@@ -3,6 +3,7 @@ import "./globals.css";
 import "./app.css";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
+import { BlogProvider } from "@/context/blogProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        {children}
+        <BlogProvider>{children}</BlogProvider>
         <Footer />
       </body>
     </html>

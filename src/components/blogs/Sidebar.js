@@ -4,7 +4,7 @@ import React from "react";
 import { FaArrowRight } from "react-icons/fa6";
 
 const Sidebar = ({ blogs }) => {
-  const filteredBlogs = filterBlogByCategory(blogs, "Startups").slice(0, 6);
+  const filteredBlogs = filterBlogByCategory(blogs, "Startups").slice(0, 8);
   return (
     <div>
       <div>
@@ -14,7 +14,10 @@ const Sidebar = ({ blogs }) => {
             <div key={blog.id} className="my-4 border-b-2 border-spacing-2">
               <h4 className="text-base">{blog.title}</h4>
               <Link
-                href={`/blogs/${blog.id}`}
+                href={{
+                  pathname: `/blogs/${blog.id}`,
+                  query: { title: `${blog.title}` },
+                }}
                 className="text-sm pb-2 inline-flex font-semibold items-center hover:text-orange-500"
               >
                 Read now <FaArrowRight />

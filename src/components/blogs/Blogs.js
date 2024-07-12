@@ -1,15 +1,20 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BlogCards from "./BlogCards";
 import Pagination from "./Pagination";
 import { filterBlogByCategory, filterBlogByPageSize } from "@/utils/blog";
 import Category from "./Category";
 import Sidebar from "./Sidebar";
-
-const Blogs = ({ blogs }) => {
+import { usePathname } from "next/navigation";
+import { useBlogData } from "@/context/blogProvider";
+const Blogs = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [blogs, setBlogs] = useState(null);
+  const { data, error } = useBlogData();
+  if (error) throw new Error(error);
   const pageSize = 9;
+  const pathName = usePathname();
 
   // handle page and category change
   const handlePageChange = (pageNum) => {
@@ -19,33 +24,44 @@ const Blogs = ({ blogs }) => {
     setSelectedCategory(categoryName);
     setCurrentPage(1);
   };
-  // filter blogs by category and page size
-  const filteredBlogsByCategory = filterBlogByCategory(blogs, selectedCategory);
-  const filteredBlogsByPageSize = filterBlogByPageSize(
-    filteredBlogsByCategory,
-    currentPage,
-    pageSize
-  );
 
+  useEffect(() => {
+    if (data) {
+      setBlogs(data);
+    }
+  }, [data]);
+
+  // filter blogs by category and page size
+  const filteredBlogsByCategory = blogs
+    ? filterBlogByCategory(data, selectedCategory)
+    : null;
+  const filteredBlogsByPageSize = filteredBlogsByCategory
+    ? filterBlogByPageSize(filteredBlogsByCategory, currentPage, pageSize)
+    : null;
   // JSX
   return (
     <div>
-      {filteredBlogsByPageSize.length > 0 && (
+      {filteredBlogsByPageSize && filteredBlogsByPageSize.length > 0 && (
         <>
-          <Category
-            onSelectCategory={handleCategoryChange}
-            selectedCategory={selectedCategory}
-          />
+          {pathName === "/blogs" && (
+            <Category
+              onSelectCategory={handleCategoryChange}
+              selectedCategory={selectedCategory}
+            />
+          )}
+
           <div className="flex flex-col lg:flex-row gap-6">
             <BlogCards blogs={filteredBlogsByPageSize} />
-            <Sidebar blogs={blogs} />
+            {pathName !== "/blogs" && <Sidebar blogs={blogs} />}
           </div>
-          <Pagination
-            onPageChange={handlePageChange}
-            totalBlogs={filteredBlogsByCategory.length}
-            pageSize={pageSize}
-            currentPage={currentPage}
-          />
+          {pathName === "/blogs" && (
+            <Pagination
+              onPageChange={handlePageChange}
+              totalBlogs={filteredBlogsByCategory.length}
+              pageSize={pageSize}
+              currentPage={currentPage}
+            />
+          )}
         </>
       )}
     </div>
