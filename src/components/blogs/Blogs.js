@@ -4,6 +4,7 @@ import BlogCards from "./BlogCards";
 import Pagination from "./Pagination";
 import { filterBlogByCategory, filterBlogByPageSize } from "@/utils/blog";
 import Category from "./Category";
+import Sidebar from "./Sidebar";
 
 const Blogs = ({ blogs }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -35,8 +36,9 @@ const Blogs = ({ blogs }) => {
             onSelectCategory={handleCategoryChange}
             selectedCategory={selectedCategory}
           />
-          <div>
+          <div className="flex flex-col lg:flex-row gap-6">
             <BlogCards blogs={filteredBlogsByPageSize} />
+            <Sidebar blogs={blogs} />
           </div>
           <Pagination
             onPageChange={handlePageChange}

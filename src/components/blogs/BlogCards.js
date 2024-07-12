@@ -4,7 +4,7 @@ import { FaCalendarCheck, FaUserTie } from "react-icons/fa6";
 
 const BlogCards = ({ blogs }) => {
   return (
-    <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 px-4">
+    <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 px-4">
       {blogs.map((blog) => {
         return (
           <Link
