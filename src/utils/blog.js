@@ -11,3 +11,8 @@ export const filterBlogByPageSize = (blogs, pageNumber, pageSize) => {
   );
   return filteredBlogs;
 };
+
+export const findBlogById = (blogs, id) => {
+  const blog = blogs.find((blog) => blog.id === +id);
+  return blog;
+};

@@ -1,7 +1,9 @@
-const url = process.env.DB_URL || "http://localhost:5000/blogs";
+import { blogApi } from "@/config/secrets";
 export const getBlogs = async () => {
   try {
-    const res = await fetch("http://localhost:5000/blogs");
+    const res = await fetch(
+      blogApi || "https://mamtn011.github.io/our_garden/blog.json"
+    );
     const data = await res.json();
     return data;
   } catch (err) {

@@ -12,7 +12,7 @@ const Header = () => {
   const pathname = usePathname();
   const navItems = [
     { path: "/", label: "Home" },
-    { path: "/blogs", label: "Blog" },
+    { path: "/blogs", label: "Blogs" },
     { path: "/contact", label: "Contact" },
   ];
   return (
@@ -36,7 +36,7 @@ const Header = () => {
           ))}
         </ul>
         {/* menu social icons */}
-        <div className="text-white text-xl sm:hidden lg:flex gap-4 items-center">
+        <div className="text-white text-xl hidden md:flex gap-4 items-center">
           <SocialLinks />
         </div>
 

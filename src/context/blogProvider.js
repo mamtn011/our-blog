@@ -1,9 +1,7 @@
 "use client";
 import { createContext, useState, useContext, useEffect } from "react";
 import { getBlogs } from "@/lib/blog";
-
 const BlogContext = createContext();
-
 export const BlogProvider = ({ children }) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -35,7 +33,7 @@ export const BlogProvider = ({ children }) => {
 export const useBlogData = () => {
   const context = useContext(BlogContext);
   if (!context) {
-    throw new Error("useApi must be used within an ApiProvider");
+    throw new Error("Error in blog data provider!");
   }
   return context;
 };
