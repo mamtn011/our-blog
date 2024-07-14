@@ -5,9 +5,11 @@ const BlogContext = createContext();
 export const BlogProvider = ({ children }) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   // fetching data from API
   useEffect(() => {
+    setIsLoading(true);
     if (getBlogs) {
       (async () => {
         try {
@@ -18,12 +20,14 @@ export const BlogProvider = ({ children }) => {
         }
       })();
     }
+    setIsLoading(false);
   }, [getBlogs]);
 
   // Value object for provider
   const value = {
     data,
     error,
+    isLoading,
   };
 
   return <BlogContext.Provider value={value}>{children}</BlogContext.Provider>;

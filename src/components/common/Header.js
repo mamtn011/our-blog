@@ -71,14 +71,14 @@ const Header = () => {
       </nav>
       {/* nav items for mobile device */}
       <ul
-        className={`md:hidden gap-12 text-lg block space-y-2 p-4 mt-14 bg-white h-lvh ${
+        className={`md:hidden gap-12 text-lg block space-y-2 p-4 mt-14 bg-gray-900 h-lvh ${
           isMenuOpen
             ? "fixed top-0 left-0 w-full transition-all ease-out duration-150"
             : "hidden"
         }`}
       >
         {navItems.map(({ path, label }) => (
-          <li key={path} className="text-black">
+          <li key={path} className="text-white">
             <Link
               href={path}
               className="hover:text-orange-500 hover:underline underline-offset-4"
