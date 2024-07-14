@@ -52,7 +52,7 @@ const Blogs = () => {
 
           <div className="flex flex-col lg:flex-row gap-6">
             <BlogCards blogs={filteredBlogsByPageSize} />
-            {pathName !== "/blogs" && <Sidebar blogs={blogs} />}
+            {pathName === "/" && <Sidebar blogs={blogs} />}
           </div>
           {pathName === "/blogs" && (
             <Pagination
