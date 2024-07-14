@@ -4,7 +4,7 @@ import "./app.css";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import { BlogProvider } from "@/context/blogProvider";
-
+import { Suspense } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -16,9 +16,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
-        <BlogProvider>{children}</BlogProvider>
-        <Footer />
+        <Suspense>
+          <Header />
+          <BlogProvider>{children}</BlogProvider>
+          <Footer />
+        </Suspense>
       </body>
     </html>
   );
